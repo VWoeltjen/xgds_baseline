@@ -37,6 +37,11 @@
         <div class="collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarCollapse">
         	<div class="d-flex flex-row justify-content-between">
             <ul class="navbar-nav ">
+                {% for tab in settings.XGDS_TABS %}
+                <li class='nav-item'>
+                    <a class='nav-link' href="{% url tab.url %}">{{tab.label}}</a>
+                </li>
+                {% endfor %}
                 <!-- li class='nav-item {% currentnav map* xgds_map_server* %}' -->
                     <!-- a class="nav-link {% currentnav map* xgds_map_server* %}" href="{% url 'map' %}" title="Map">Map</a -->
                 <!-- /li -->
