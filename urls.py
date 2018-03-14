@@ -28,23 +28,13 @@ urlpatterns = [url(r'^admin/', include(admin.site.urls)),
                url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                url(r'^$', RedirectView.as_view(url=settings.SCRIPT_NAME + settings.XGDS_SITE_APP + '/', permanent=False),{}),
                url(r'^accounts/', include('xgds_core.registerUrls')),
-               url(r'^' + re.escape(settings.XGDS_SITE_APP + '/'), include(settings.XGDS_SITE_APP + '.urls')),
                url(r'^favicon\.ico$', RedirectView.as_view(url='/static/' + settings.FAVICON_PATH, permanent=True), {'readOnly': True}),
-               #url(r'^xgds_sample/', include('xgds_sample.urls')),
                url(r'^pycroraptor/', include('geocamPycroraptor2.urls')),
                url(r'^track/', include('geocamTrack.urls')),
-               #url(r'^xgds_map_server/', include('xgds_map_server.urls')),
-               #url(r'^xgds_data/', include('xgds_data.urls')),
-               #url(r'^xgds_image/', include('xgds_image.urls')),
-               #url(r'^notes/', include('xgds_notes2.urls')),
-               #url(r'^xgds_planner2/', include('xgds_planner2.urls')),
-               #url(r'^xgds_plot/', include('xgds_plot.urls')),
-               #url(r'^xgds_video/', include('xgds_video.urls')),
-               #url(r'^xgds_instrument/edit/(?P<instrument_name>\w*)/(?P<pk>[\d]+)$', editInstrumentData, {}, 'basalt_instrument_data_edit'),
-               #url(r'^xgds_instrument/', include('xgds_instrument.urls')),
-               url(r'^xgds_core/', include('xgds_core.urls')),
-               #url(r'^xgds_status_board/', include('xgds_status_board.urls')),
                ]
+
+for app in filter(lambda app : re.match(r'^xgds_', app), settings.INSTALLED_APPS):
+    urlpatterns.append(url(r'^' + re.escape(app + '/'), include(app + '.urls')))
 
 if settings.DEBUG_TOOLBAR:
     import debug_toolbar
