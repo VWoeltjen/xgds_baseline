@@ -94,6 +94,15 @@ for app in INSTALLED_APPS:
     except:
         pass
 
+XGDS_TABS = {
+    'xgds_map_server': [
+        { 'url': 'map', 'name': 'Map' },
+    ],
+    'xgds_sample': [
+        { 'url': 'xgds_sample_record_edit', 'name': 'Sample' }
+    ],
+}
+
 USING_DJANGO_DEV_SERVER = ('runserver' in sys.argv)
 USE_STATIC_SERVE = USING_DJANGO_DEV_SERVER
 
@@ -106,7 +115,7 @@ if USING_DJANGO_DEV_SERVER:
 DEBUG = True
 # TEMPLATE_DEBUG = DEBUG
 
-    
+
 PROJ_ROOT = os.path.abspath(os.path.dirname(__file__))
 if not PROJ_ROOT.endswith('/'):
     PROJ_ROOT += '/'
@@ -316,9 +325,9 @@ if DEBUG_TOOLBAR:
     MIDDLEWARE_CLASSES_LIST = list(MIDDLEWARE_CLASSES)
     MIDDLEWARE_CLASSES_LIST.insert(2, 'debug_toolbar.middleware.DebugToolbarMiddleware')
     MIDDLEWARE_CLASSES = tuple(MIDDLEWARE_CLASSES_LIST)
-    INTERNAL_IPS = ('127.0.0.1', 
+    INTERNAL_IPS = ('127.0.0.1',
                     '10.0.3.1',
-                    '::1')  # TODO add your virtual machine's IP here from your host; 
+                    '::1')  # TODO add your virtual machine's IP here from your host;
     #ie do an ifconfig and see if virtualbox or vmware has created something.
     # Alternately you can create a view that returns request.META['REMOTE_ADDR']
     DEBUG_TOOLBAR_PANELS = ['debug_toolbar.panels.versions.VersionsPanel',
@@ -543,11 +552,11 @@ REST_FRAMEWORK = {
     ]
 }
 
-# GEOCAM_TRACK_PRELOAD_TRACK_IMAGES = ["/static/xgds_baseline_app/icons/ev1_pointer.png", 
+# GEOCAM_TRACK_PRELOAD_TRACK_IMAGES = ["/static/xgds_baseline_app/icons/ev1_pointer.png",
 #                                      "/static/xgds_baseline_app/icons/ev2_pointer.png",
-#                                      "/static/xgds_baseline_app/icons/ev1_circle.png", 
+#                                      "/static/xgds_baseline_app/icons/ev1_circle.png",
 #                                      "/static/xgds_baseline_app/icons/ev2_circle.png",
-#                                      "/static/xgds_baseline_app/icons/ev1_stop.png", 
+#                                      "/static/xgds_baseline_app/icons/ev1_stop.png",
 #                                      "/static/xgds_baseline_app/icons/ev2_stop.png"]
 
 # XGDS_SSE_TRACK_CHANNELS = ['EV1','EV2']

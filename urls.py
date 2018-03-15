@@ -34,7 +34,7 @@ urlpatterns = [url(r'^admin/', include(admin.site.urls)),
                ]
 
 for app in filter(lambda app : re.match(r'^xgds_', app), settings.INSTALLED_APPS):
-    urlpatterns.append(url(r'^' + re.escape(app + '/'), include(app + '.urls')))
+    urlpatterns.append(url(r'^' + re.escape(app + '/'), include(app + '.urls'), app))
 
 if settings.DEBUG_TOOLBAR:
     import debug_toolbar
